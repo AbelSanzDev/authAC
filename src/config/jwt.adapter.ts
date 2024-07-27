@@ -1,5 +1,4 @@
 import jwt from  'jsonwebtoken';
-import { resolve } from 'path';
 import { envs } from './envs';
 
 
@@ -23,7 +22,7 @@ export class JwtAdaper{
     }
 
     static validateToken(token:string){
-
+        
 
         return;//*Se retorna el payload
     }
