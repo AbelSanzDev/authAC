@@ -74,14 +74,14 @@ export class AuthService{
             <h2>Click on the following link to validate your email</h2>
             <a href="${link}">Go</a>
         `
-        const optios = {
+        const options = {
             to:email,
             subject:"Validate your email",
             htmlBody:html
         }
 
-        const isSet = await this.emailService.sendEmail(optios);
-        if(!isSet) throw CustomError.internalServer("Error sending error");
+        const isSet = await this.emailService.sendEmail(options);
+        if(!isSet) throw CustomError.internalServer("Error sending email");
 
 
     }

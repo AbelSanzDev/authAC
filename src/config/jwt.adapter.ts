@@ -23,7 +23,7 @@ export class JwtAdaper{
 
     static validateToken(token:string){
         
-
+        
         return;//*Se retorna el payload
     }
 }

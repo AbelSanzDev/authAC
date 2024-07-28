@@ -12,7 +12,7 @@ export class AuthRoutes {
   static get routes(): Router {
 
     const router = Router();
-    const emailService = new EmailService(envs.MAILER_SERVICE,envs.MAILER_EMAI,envs.MAILER_SECRET_KEY);
+    const emailService = new EmailService(envs.MAILER_SERVICE,envs.MAILER_EMAIL,envs.MAILER_SECRET_KEY);
     const authService = new AuthService(emailService);
     const controller = new AuthController(authService);
     
@@ -21,6 +21,7 @@ export class AuthRoutes {
     router.post('/login', controller.loginUser);
     router.post("/register", controller.register);
 
+    //*Validar gmail de user
     router.get('/validate-email/:token', controller.validateEmail);
 
 
