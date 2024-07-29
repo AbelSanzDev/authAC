@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { CustomError } from "../../domain";
-import { CreateCategoryDto } from "../../domain/dtos";
+import { CreateCategoryDto, PaginationDto } from "../../domain/dtos";
 import { CategorySevice } from "../services/category.service";
 
 
@@ -27,7 +27,12 @@ export class CategoryController{
 
     }
     getCategory = async(req:Request,res:Response)=>{
-        this.categorySevice.getCategories(req.body.user)
+        const {page=1,limit=10} = req.query;//*Esto nos sirve para poder tener query parametes que son de esta manera ?page=1&limit=5
+        const [error, paginationDto] = PaginationDto.create(+page,+limit);//*El + que se agrega es para poder convertir esos datos a numeros
+        if(error) return res.status(400).json({message:error});
+
+
+        this.categorySevice.getCategories(req.body.user, paginationDto!)
         .then(categories => res.status(201).json(categories))
         .catch(error => this.handleError(error,res));
     }
