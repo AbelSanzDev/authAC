@@ -20,13 +20,13 @@ export class JwtAdaper{
         
     }
 
-    //*Validando si el token que tiene el usuario aun esta disponible
-    static validateToken(token:string){ 
+    //*Validando si el token que tiene el usuario aun esta disponible y si es valido
+    static validateToken<T>(token:string):Promise<T|null>{ 
         
         return new Promise((resolve)=>{
             jwt.verify(token, JWT_SEED,(err,decoded)=>{
                 if(err) return resolve(null);
-                resolve(decoded);
+                resolve(decoded as T);
             })
         })
     }
