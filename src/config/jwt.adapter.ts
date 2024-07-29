@@ -10,7 +10,6 @@ export class JwtAdaper{
 
     static async generateToken(payload:any, duration:string = "2h"){
 
-
         return new Promise((resolve)=>{
             jwt.sign(payload,JWT_SEED,{expiresIn:duration}, (err,token)=>{
                 if(err) return resolve(null);
@@ -21,9 +20,14 @@ export class JwtAdaper{
         
     }
 
-    static validateToken(token:string){
+    //*Validando si el token que tiene el usuario aun esta disponible
+    static validateToken(token:string){ 
         
-        
-        return;//*Se retorna el payload
+        return new Promise((resolve)=>{
+            jwt.verify(token, JWT_SEED,(err,decoded)=>{
+                if(err) return resolve(null);
+                resolve(decoded);
+            })
+        })
     }
 }

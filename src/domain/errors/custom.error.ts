@@ -1,8 +1,9 @@
 
 
 
-
+//*Esta clase nos permite poder manejar todos los errores de nuestra aplicacion
 export class CustomError extends Error{
+    //*Este connstructor es pirvado devido a que solo se utiliza en esta clase en cual recibe el codigo de error y el menssage
    private constructor(
         public readonly statusCode:number,
         public readonly message:string

@@ -4,6 +4,7 @@ import { CustomError } from "../errors/custom.error";
 
 
 export class UserEntity{
+    //*para que ingresen los datos
     constructor(
         public id:string,
         public name:string,
@@ -14,6 +15,7 @@ export class UserEntity{
         public img?:string,
     ){}
 
+    //*Esto se hace para poder validar si los datos estan entrando correctamente
     static fromObject(object:{[key:string]:any}){
         const {id,_id,name,email,emailValidated,password,img,role} = object;
         if(!_id && !id){

@@ -13,7 +13,7 @@ export class AuthController{
     constructor(
         public readonly authService:AuthService
     ){}
-
+    //*Esta parte de codigo 
     private handleError = (error:any,res:Response)=>{
         if(error instanceof CustomError){
             return res.status(error.statusCode).json({message:error.message});
@@ -39,6 +39,9 @@ export class AuthController{
         .catch(error=> this.handleError(error,res));
     }
     validateEmail = (req:Request,res:Response)=>{
-        res.json("emial user")
+        const {token} = req.params;
+        this.authService.validateEmail(token)
+        .then(()=>res.json({message:"User validated"}))
+        .catch((error)=>this.handleError(error,res));
     }
 }
