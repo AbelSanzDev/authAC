@@ -28,4 +28,13 @@ const productSchema = new mongoose.Schema({
   },
 });
 
+//*Esto se hace para poder estilizar el como se veran los datos cuando los mandemos a llamar
+productSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc, ret, options) {
+    delete ret._id;
+  },
+});
+
 export const ProductModel = mongoose.model("product", productSchema);
